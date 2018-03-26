@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">smsforwarder</string>
+    <string name="action_input_id">Input receiver Id</string>
+    <string name="action_set">Set</string>
 </resources>
