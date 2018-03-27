@@ -1,4 +1,4 @@
-package minhna.android.smsforwarder
+package minhna.android.smsreceiver
 
 /**
  * Created by minhnguyen on 3/27/18.

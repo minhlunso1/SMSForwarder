@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
+import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,14 +25,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btnSet -> {
                 if (!isSmsPermissionGranted()) {
                     showRequestPermissionsInfoAlertDialog(true)
-                }
+                } else
+                    configId()
             }
         }
     }
 
+    private fun configId() {
+        AP.saveData(this, Constant.KEY.ID, inputId.text.toString())
+        this.toast(getString(R.string.done))
+    }
+
     fun isSmsPermissionGranted(): Boolean {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED
-            && ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M )
+            return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED
+        else
+            return true;
     }
 
     /**
@@ -72,7 +82,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         if (grantResults[index] != PackageManager.PERMISSION_GRANTED)
                             break
                     }
-                    //ToDo
+                    configId()
                 }
                 return
             }

