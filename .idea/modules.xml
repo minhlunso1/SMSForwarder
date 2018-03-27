@@ -4,9 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SMSForwarder.iml" filepath="$PROJECT_DIR$/SMSForwarder.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smsforwarder.iml" filepath="$PROJECT_DIR$/smsforwarder.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smsreceiver/smsreceiver.iml" filepath="$PROJECT_DIR$/smsreceiver/smsreceiver.iml" />
       <module fileurl="file://$PROJECT_DIR$/smsreceiver/smsreceiver.iml" filepath="$PROJECT_DIR$/smsreceiver/smsreceiver.iml" />
     </modules>
   </component>

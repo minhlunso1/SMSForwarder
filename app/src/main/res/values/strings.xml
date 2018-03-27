@@ -2,4 +2,7 @@
     <string name="app_name">smsforwarder</string>
     <string name="action_input_id">Input receiver Id</string>
     <string name="action_set">Set</string>
+    <string name="permission_alert_dialog_title">Permission</string>
+    <string name="permission_dialog_message">Please accept those permissions to run app</string>
+    <string name="action_ok">OK</string>
 </resources>
