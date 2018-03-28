@@ -22,6 +22,8 @@ class Constant {
         companion object {
             val ID = "id"
             val FIREBASE = "firebase"
+            val FIREBASE_TOKEN = "firebase_token"
+            val APP = "app_receiver"
         }
     }
 }

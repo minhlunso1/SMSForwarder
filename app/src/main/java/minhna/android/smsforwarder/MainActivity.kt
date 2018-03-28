@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btnSet.setOnClickListener(this)
+        setupView()
+    }
+
+    private fun setupView() {
+        if (AP.getStringData(this, Constant.KEY.ID) != null)
+            inputId.setText(AP.getStringData(this, Constant.KEY.ID))
     }
 
     override fun onClick(v: View?) {

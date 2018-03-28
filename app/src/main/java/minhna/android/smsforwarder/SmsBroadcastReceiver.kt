@@ -9,6 +9,10 @@ import android.telephony.SmsMessage
 import android.util.Log
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import minhna.android.androidarchitecturecomponent.api.ManagerAPI
+import minhna.android.smsreceiver.model.Message
 
 /**
  * Created by minhnguyen on 3/27/18.
@@ -74,6 +78,17 @@ class SmsBroadcastReceiver() : BroadcastReceiver() {
                 .add(item)
                 .addOnSuccessListener { documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.id) }
                 .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
+
+        forwardSms(AP.getStringData(context, Constant.KEY.ID), smsSender, smsBody);
+    }
+
+    private fun forwardSms(userName: String, smsSender: String, smsBody: String) {
+        ManagerAPI().forwardSms(Message(userName, smsSender, smsBody))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ response -> Log.d(TAG, response)},
+                        { error -> error.printStackTrace() }
+                )
     }
 
     internal fun setListener(listener: Listener) {

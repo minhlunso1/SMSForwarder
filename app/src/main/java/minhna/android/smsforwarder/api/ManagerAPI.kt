@@ -32,12 +32,12 @@ class ManagerAPI {
         }
     }
 
-    fun forwardSms(request: Message): Observable<Void> {
+    fun forwardSms(request: Message): Observable<String> {
         return Observable.create {
             subscriber ->
             val response = appApi.forwardSms(request).execute()
             if (response.isSuccessful) {
-                subscriber.onNext(response.body()!!)
+                subscriber.onNext("message forwarded")
             } else {
                 subscriber.onError(Throwable(response.message()))
             }
