@@ -3,4 +3,10 @@
     <string name="action_set">Set</string>
     <string name="action_input_id">Input ID</string>
     <string name="done">Done</string>
+    <!--
+       This is the name that users will see when interacting with this channel.
+       It should describe the category of notifications that will be sent through this channel
+    -->
+    <string name="default_notification_channel_name" translatable="true">Chat</string>
+    <string name="default_notification_channel_id" translatable="false">chat_channel</string>
 </resources>

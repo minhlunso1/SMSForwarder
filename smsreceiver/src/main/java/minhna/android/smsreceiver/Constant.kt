@@ -21,6 +21,7 @@ class Constant {
     interface KEY {
         companion object {
             val ID = "id"
+            val FIREBASE = "firebase"
         }
     }
 }

@@ -1,4 +1,4 @@
-package minhna.android.smsreceiver
+package minhna.android.smsreceiver.model
 
 /**
  * Created by minhnguyen on 3/27/18.

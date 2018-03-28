@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_list_message.*
+import minhna.android.smsreceiver.model.Message
 
 /**
  * Created by minhnguyen on 3/27/18.

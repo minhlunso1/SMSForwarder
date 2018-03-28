@@ -1,9 +1,9 @@
 package minhna.android.smsreceiver
 
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_message.view.*
+import minhna.android.smsreceiver.model.Message
 
 /**
  * Created by minhnguyen on 3/27/18.
