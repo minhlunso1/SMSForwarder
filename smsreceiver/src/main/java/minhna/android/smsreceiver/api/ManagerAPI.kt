@@ -44,4 +44,16 @@ class ManagerAPI {
             }
         }
     }
+
+    fun getListMessages(userName: String): Observable<List<Message>> {
+        return Observable.create {
+            subscriber ->
+            val response = appApi.getListMessage(userName).execute()
+            if (response.isSuccessful && response.body() != null) {
+                subscriber.onNext(response.body()!!)
+            } else {
+                subscriber.onError(Throwable(response.message()))
+            }
+        }
+    }
 }
