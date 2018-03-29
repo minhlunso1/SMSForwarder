@@ -17,5 +17,5 @@ interface AppAPI {
     fun forwardSms(@Body request: Message): Call<Void>
 
     @GET(UrlAPI.listMessages)
-    fun getListMessage(@QueryName user_name: String): Call<List<Message>>
+    fun getListMessage(@Query("user_name") userName: String): Call<List<Message>>
 }

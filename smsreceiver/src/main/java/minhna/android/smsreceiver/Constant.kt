@@ -15,6 +15,8 @@ class Constant {
         companion object {
             val SMS_PERMISSION_CODE = 1
             val FOREGROUND_SERVICE = 101
+            val FIRESTORE = 102
+            val OWN_SERVER = 103
         }
     }
 

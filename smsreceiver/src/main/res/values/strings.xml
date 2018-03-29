@@ -11,4 +11,5 @@
     <string name="default_notification_channel_id" translatable="false">chat_channel</string>
     <string name="try_again">Please try again</string>
     <string name="device_not_supported">This device is not supported</string>
+    <string name="error">Error</string>
 </resources>

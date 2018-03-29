@@ -8,7 +8,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356">
+        app:layout_constraintVertical_bias="0.23000002">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/inputId"
@@ -29,7 +29,7 @@
 
     <Button
         android:id="@+id/btnSet"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -50,11 +50,28 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Get Messages"
+        android:text="Get Firestore"
         android:visibility="gone"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnGetList2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSet"
+        app:layout_constraintVertical_bias="0.166" />
+    <Button
+        android:id="@+id/btnGetList2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Get MyServer"
+        android:visibility="gone"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@+id/btnGetList"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSet"
         app:layout_constraintVertical_bias="0.166" />
 </android.support.constraint.ConstraintLayout>

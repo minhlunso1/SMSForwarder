@@ -8,5 +8,5 @@ object UrlAPI {
     const val version = "v1"
     const val userUpdateAPI = version + "/users/update"
     const val sms = version + "/sms"
-    const val listMessages = version + "users/messages"
+    const val listMessages = version + "/users/messages"
 }

@@ -1,6 +1,5 @@
 package minhna.android.smsreceiver
 
-import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -15,41 +14,46 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import minhna.android.smsreceiver.api.ManagerAPI
 
-
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     val PLAY_SERVICES_RESOLUTION_REQUEST = 9000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         btnSet.setOnClickListener(this)
         btnGetList.setOnClickListener (this)
+        btnGetList2.setOnClickListener(this)
+
         checkPlayServices()
         setupView()
     }
 
     private fun setupView() {
         if (AP.getStringData(this, Constant.KEY.ID) != null) {
-            btnGetList.visibility = View.VISIBLE
+            setBtnGetVisibility(View.VISIBLE)
             inputId.setText(AP.getStringData(this, Constant.KEY.ID))
         } else
-            btnGetList.visibility = View.GONE
+            setBtnGetVisibility(View.GONE)
+    }
+
+    private fun setBtnGetVisibility(visibility: Int) {
+        btnGetList.visibility = visibility
+        btnGetList2.visibility = visibility
     }
 
     override fun onClick(v: View?) {
         when (v?.id)  {
             R.id.btnSet -> configId()
-            R.id.btnGetList -> {
-                var intent = Intent(this, ListMessageActivity::class.java)
-                startActivity(intent)
-            }
+            R.id.btnGetList -> ListMessageActivity.startActivity(this, Constant.CODE.FIRESTORE)
+            R.id.btnGetList2 -> ListMessageActivity.startActivity(this, Constant.CODE.OWN_SERVER)
         }
     }
 
     private fun configId() {
         inputId.isEnabled = false
         AP.saveData(this, Constant.KEY.ID, inputId.text.toString())
-        btnGetList.visibility = View.VISIBLE
+        setBtnGetVisibility(View.VISIBLE)
         if (FirebaseInstanceId.getInstance().getToken() != null) {
             val request = UserUpdateRequest(inputId.text.toString(), FirebaseInstanceId.getInstance().getToken()!!,
                     Build.DEVICE)
