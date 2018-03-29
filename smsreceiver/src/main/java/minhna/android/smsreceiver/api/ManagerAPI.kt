@@ -1,7 +1,8 @@
-package minhna.android.androidarchitecturecomponent.api
+package minhna.android.smsreceiver.api
 
 import io.reactivex.Observable
 import minhna.android.smsreceiver.model.Message
+import minhna.android.smsreceiver.model.Response
 import minhna.android.smsreceiver.model.UserUpdateRequest
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -20,7 +21,7 @@ class ManagerAPI {
         appApi = retrofit.create(AppAPI::class.java)
     }
 
-    fun registerReceiver(request: UserUpdateRequest): Observable<UserUpdateRequest> {
+    fun registerReceiver(request: UserUpdateRequest): Observable<Response> {
         return Observable.create {
             subscriber ->
             val response = appApi.updateReceiver(request).execute()

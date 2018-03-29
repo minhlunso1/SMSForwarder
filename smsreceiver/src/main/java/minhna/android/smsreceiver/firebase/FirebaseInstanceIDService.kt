@@ -6,9 +6,9 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import minhna.android.androidarchitecturecomponent.api.ManagerAPI
 import minhna.android.smsreceiver.AP
 import minhna.android.smsreceiver.Constant
+import minhna.android.smsreceiver.api.ManagerAPI
 import minhna.android.smsreceiver.model.UserUpdateRequest
 
 /**

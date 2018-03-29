@@ -24,7 +24,7 @@ class MessageAdapter(var list: List<Message>) : RecyclerView.Adapter<MessageAdap
     class MessageVH(parent: ViewGroup): RecyclerView.ViewHolder(parent.inflate(R.layout.item_message)) {
         fun bind(item: Message) = with(itemView) {
             tvFrom.text = item.from
-            tvBody.text = item.body
+            tvBody.text = item.message
         }
     }
 }

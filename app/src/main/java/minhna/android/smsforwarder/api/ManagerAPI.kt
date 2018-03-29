@@ -1,6 +1,7 @@
-package minhna.android.androidarchitecturecomponent.api
+package minhna.android.smsforwarder.api
 
 import io.reactivex.Observable
+import minhna.android.smsforwarder.model.Response
 import minhna.android.smsreceiver.model.Message
 import minhna.android.smsreceiver.model.UserUpdateRequest
 import retrofit2.Retrofit
@@ -32,12 +33,12 @@ class ManagerAPI {
         }
     }
 
-    fun forwardSms(request: Message): Observable<String> {
+    fun forwardSms(request: Message): Observable<Response> {
         return Observable.create {
             subscriber ->
             val response = appApi.forwardSms(request).execute()
             if (response.isSuccessful) {
-                subscriber.onNext("message forwarded")
+                subscriber.onNext(response.body()!!)
             } else {
                 subscriber.onError(Throwable(response.message()))
             }

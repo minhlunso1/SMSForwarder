@@ -1,6 +1,7 @@
-package minhna.android.androidarchitecturecomponent.api
+package minhna.android.smsreceiver.api
 
 import minhna.android.smsreceiver.model.Message
+import minhna.android.smsreceiver.model.Response
 import minhna.android.smsreceiver.model.UserUpdateRequest
 import retrofit2.Call
 import retrofit2.http.Body
@@ -11,7 +12,7 @@ import retrofit2.http.POST
  */
 interface AppAPI {
     @POST(UrlAPI.userUpdateAPI)
-    fun updateReceiver(@Body request: UserUpdateRequest): Call<UserUpdateRequest>
+    fun updateReceiver(@Body request: UserUpdateRequest): Call<Response>
 
     @POST(UrlAPI.sms)
     fun forwardSms(@Body request: Message): Call<Void>

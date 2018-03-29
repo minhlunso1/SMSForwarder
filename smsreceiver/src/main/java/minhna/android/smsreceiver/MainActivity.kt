@@ -10,10 +10,10 @@ import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import minhna.android.androidarchitecturecomponent.api.ManagerAPI
 import minhna.android.smsreceiver.model.UserUpdateRequest
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
+import minhna.android.smsreceiver.api.ManagerAPI
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {

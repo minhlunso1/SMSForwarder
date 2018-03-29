@@ -11,7 +11,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import minhna.android.androidarchitecturecomponent.api.ManagerAPI
+import minhna.android.smsforwarder.api.ManagerAPI
 import minhna.android.smsreceiver.model.Message
 
 /**
@@ -86,7 +86,7 @@ class SmsBroadcastReceiver() : BroadcastReceiver() {
         ManagerAPI().forwardSms(Message(userName, smsSender, smsBody))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe({ response -> Log.d(TAG, response)},
+                .subscribe({ response -> Log.d(TAG, "message forwarded")},
                         { error -> error.printStackTrace() }
                 )
     }

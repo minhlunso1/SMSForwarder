@@ -1,4 +1,4 @@
-package minhna.android.androidarchitecturecomponent.api
+package minhna.android.smsforwarder.api
 
 /**
  * Created by minhnguyen on 3/8/18.

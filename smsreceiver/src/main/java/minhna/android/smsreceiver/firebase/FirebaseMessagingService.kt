@@ -20,6 +20,7 @@ import minhna.android.smsreceiver.R
  * Created by minhnguyen on 3/28/18.
  */
 class FirebaseMessagingService : FirebaseMessagingService() {
+    var notiId = 0
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         // [START_EXCLUDE]
@@ -35,7 +36,9 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         Log.d(Constant.KEY.FIREBASE, "From: " + remoteMessage!!.from!!)
 
         if (remoteMessage.data.size > 0) {
-            Log.d(Constant.KEY.FIREBASE, "Message data payload: " + remoteMessage.data)
+            val data: Map<String, Any> = remoteMessage.data
+            Log.d(Constant.KEY.FIREBASE, "Message data payload: " + data)
+            sendNotification(data.get("title").toString(), data.get("message").toString())
         }
 
         // Check if message contains a notification payload.
@@ -45,7 +48,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    private fun sendNotification(messageBody: String) {
+    private fun sendNotification(messageFrom: String, messageBody: String) {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -55,7 +58,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.drawable.ic_bravesoft)
-                .setContentTitle("FCM Message")
+                .setContentTitle(messageFrom)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
@@ -71,6 +74,6 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build())
+        notificationManager.notify(notiId++ , notificationBuilder.build())
     }
 }

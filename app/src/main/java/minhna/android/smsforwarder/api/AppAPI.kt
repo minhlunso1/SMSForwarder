@@ -1,5 +1,6 @@
-package minhna.android.androidarchitecturecomponent.api
+package minhna.android.smsforwarder.api
 
+import minhna.android.smsforwarder.model.Response
 import minhna.android.smsreceiver.model.Message
 import minhna.android.smsreceiver.model.UserUpdateRequest
 import retrofit2.Call
@@ -14,5 +15,5 @@ interface AppAPI {
     fun updateReceiver(@Body request: UserUpdateRequest): Call<UserUpdateRequest>
 
     @POST(UrlAPI.sms)
-    fun forwardSms(@Body request: Message): Call<Void>
+    fun forwardSms(@Body request: Message): Call<Response>
 }
