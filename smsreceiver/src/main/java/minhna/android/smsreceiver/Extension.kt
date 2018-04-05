@@ -41,6 +41,8 @@ fun Context.toast(message: CharSequence) = Toast.makeText(this, message, Toast.L
 
 fun Activity.toast(message: CharSequence) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
+fun Activity.getCompatColor(resId: Int): Int = ContextCompat.getColor(this, resId)
+
 fun Context.getDrawable(resId: Int): Drawable? = ContextCompat.getDrawable(this, resId)
 
 fun AppCompatActivity.getAppCompatDrawable(resId: Int): Drawable? = ContextCompat.getDrawable(this, resId)

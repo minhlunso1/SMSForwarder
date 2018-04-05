@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,6 +33,9 @@ class ListMessageActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_message)
 
+        pb.indeterminateDrawable?.setColorFilter(getCompatColor(R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY);
+        pb.visibility = View.VISIBLE
+
         if (intent != null)
             code = intent.getIntExtra(Constant.KEY.ID, Constant.CODE.FIRESTORE)
 
@@ -51,7 +55,7 @@ class ListMessageActivity: AppCompatActivity() {
                                 }
                                 setListRV(list)
                             } else {
-                                toast(getString(R.string.error))
+                                onErrorGetList()
                             }
                 })
             }
@@ -61,7 +65,7 @@ class ListMessageActivity: AppCompatActivity() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ response -> setListRV(response)},
                         { error ->
-                            toast(getString(R.string.error))
+                            onErrorGetList()
                             error.printStackTrace() }
                 )
             }
@@ -69,8 +73,14 @@ class ListMessageActivity: AppCompatActivity() {
 
     }
 
+    private fun onErrorGetList() {
+        toast(getString(R.string.error))
+        pb.visibility = View.INVISIBLE
+    }
+
     private fun setListRV(list: List<Message>) {
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = MessageAdapter(list)
+        pb.visibility = View.INVISIBLE
     }
 }
