@@ -32,39 +32,49 @@ class SmsBroadcastReceiver() : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.getAction().equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {
-            var smsSender = ""
-            var smsBody = ""
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                for (smsMessage in Telephony.Sms.Intents.getMessagesFromIntent(intent)) {
-                    smsSender = smsMessage.getDisplayOriginatingAddress()
-                    smsBody += smsMessage.getMessageBody()
-                }
-            } else {
-                val smsBundle = intent.getExtras()
-                if (smsBundle != null) {
-                    val pdus = smsBundle!!.get("pdus") as Array<Any>
-                    if (pdus == null) {
-                        // Display some error to the user
-                        Log.e(TAG, "SmsBundle had no pdus key")
-                        return
-                    }
-                    val messages = arrayOfNulls<SmsMessage>(pdus.size)
-                    for (i in messages.indices) {
-                        messages[i] = SmsMessage.createFromPdu(pdus[i] as ByteArray)
-                        smsBody += messages[i]?.getMessageBody()
-                    }
-                    smsSender = messages[0]!!.getOriginatingAddress()
-                }
-            }
+            val bundle = intent.extras
+            val slot = bundle.getInt("slot", -1)
+            val sub = bundle.getInt("subscription", -1)
+            Log.w(TAG, "slot: " + slot)
+            Log.w(TAG, "sub: " + sub)
 
+            if (AP.getIntData(context, Constant.KEY.SIM_MODE) == -1 || AP.getIntData(context, Constant.KEY.SIM_MODE) == slot) {
 
-            pushServer(context, smsSender, smsBody)
+                var smsSender = ""
+                var smsBody = ""
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    for (smsMessage in Telephony.Sms.Intents.getMessagesFromIntent(intent)) {
+                        smsSender = smsMessage.getDisplayOriginatingAddress()
+                        smsBody += smsMessage.getMessageBody()
+                    }
+                } else {
+                    val smsBundle = intent.getExtras()
+                    if (smsBundle != null) {
+                        val pdus = smsBundle!!.get("pdus") as Array<Any>
+                        if (pdus == null) {
+                            // Display some error to the user
+                            Log.e(TAG, "SmsBundle had no pdus key")
+                            return
+                        }
+                        val messages = arrayOfNulls<SmsMessage>(pdus.size)
+                        for (i in messages.indices) {
+                            messages[i] = SmsMessage.createFromPdu(pdus[i] as ByteArray)
+                            smsBody += messages[i]?.getMessageBody()
+                        }
+                        smsSender = messages[0]!!.getOriginatingAddress()
+                    }
+                }
+
+                if (!AP.getBooleanData(context, Constant.KEY.SINGLE_SIM, true))
+                    smsBody += "\nto sim " + slot
+                pushServer(context, smsSender, smsBody)
 
 //            if (smsSender == serviceProviderNumber && smsBody.startsWith(serviceProviderSmsCondition)) {
 //                if (listener != null) {
 //                    listener!!.onTextReceived(smsBody)
 //                }
 //            }
+            }
         }
     }
 

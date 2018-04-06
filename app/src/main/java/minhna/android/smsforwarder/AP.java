@@ -70,29 +70,29 @@ public class AP {
         mEditor.apply();
     }
 
-    public void saveData(Context context, String key, int value) {
+    public static void saveData(Context context, String key, int value) {
         initPrefs(context);
         mEditor = mAppPreferences.edit();
         mEditor.putInt(key, value);
         mEditor.apply();
     }
 
-    public long getLongData(Context context, String key) {
+    public static long getLongData(Context context, String key) {
         initPrefs(context);
         return mAppPreferences.getLong(key, -1);
     }
 
-    public long getLongDataWithDefault(Context context, String key) {
+    public static long getLongDataWithDefault(Context context, String key) {
         initPrefs(context);
         return mAppPreferences.getLong(key, 0);
     }
 
-    public int getIntData(Context context, String key) {
+    public static int getIntData(Context context, String key) {
         initPrefs(context);
         return mAppPreferences.getInt(key, -1);
     }
 
-    public int getIntDataWithDefaultValue(Context context, String key, int defaultValue) {
+    public static int getIntDataWithDefaultValue(Context context, String key, int defaultValue) {
         initPrefs(context);
         return mAppPreferences.getInt(key, defaultValue);
     }

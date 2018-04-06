@@ -33,7 +33,6 @@ class ListMessageActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_message)
 
-        pb.indeterminateDrawable?.setColorFilter(getCompatColor(R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY);
         pb.visibility = View.VISIBLE
 
         if (intent != null)

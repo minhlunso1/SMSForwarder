@@ -14,6 +14,7 @@ class Constant {
     interface CODE {
         companion object {
             val SMS_PERMISSION_CODE = 1
+            val PHONE_PERMISSION_CODE = 2
             val FOREGROUND_SERVICE = 101
         }
     }
@@ -21,6 +22,8 @@ class Constant {
     interface KEY {
         companion object {
             val ID = "id"
+            val SIM_MODE = "sim_mode"
+            val SINGLE_SIM = "single_sim"
         }
     }
 }
